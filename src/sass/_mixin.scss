@@ -1,0 +1,121 @@
+@mixin flex($direction, $align, $justify) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align;
+  justify-content: $justify;
+}
+
+@mixin textColor($opacity) {
+  color: rgba(36, 117, 176, $opacity);
+}
+@mixin backgroundColor($opacity) {
+  background-color: rgba(36, 117, 176, $opacity);
+}
+@mixin fontFamily() {
+  font-family: 'Sitka';
+}
+@mixin textOpacityColor($opacity, $fontSize) {
+  @include textColor($opacity);
+  @include fontFamily();
+  font-size: $fontSize;
+  letter-spacing: 1px;
+}
+@mixin link($color, $hoverColor) {
+  text-decoration: none;
+  font-size: 16px;
+  color: $color;
+  letter-spacing: 1px;
+  transition: color;
+  text-transform: uppercase;
+  @include fontFamily();
+  &:hover {
+    cursor: pointer;
+    color: $hoverColor;
+  }
+}
+@mixin activeLink($color) {
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  color: $color;
+  letter-spacing: 1px;
+  @include fontFamily();
+}
+
+@mixin title() {
+  @include fontFamily();
+  font-size: 18px;
+  letter-spacing: 1px;
+  font-weight: lighter;
+  color: $black;
+}
+@mixin boxShadow() {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1.5px 5px 0 rgba(0, 0, 0, 0.19);
+}
+@mixin inputStyle {
+  @include fontFamily();
+  border: 0.5px solid $border-color;
+  font-size: 20px;
+  border-radius: 2px;
+  outline: none;
+  letter-spacing: 1px;
+  height: 50px;
+  width: 355px;
+  padding-left: 10px;
+
+  &:focus {
+    border: 1px solid black;
+  }
+  &::placeholder {
+    color: $border-color;
+    font-size: 18px;
+  }
+  @media screen and (max-width: $width) {
+    height: 50px;
+    width: 300px;
+  }
+}
+@mixin inputContainerStyle {
+  display: grid;
+  grid-row-gap: 10px;
+  label {
+    font-size: 18px;
+    text-align: left;
+  }
+  .inputErrorStyle {
+    @include inputErrorStyle();
+  }
+  .errorText {
+    @include errorText();
+  }
+}
+@mixin errorText() {
+  color: $primary-color;
+  font-size: 16px;
+  text-align: left;
+}
+@mixin inputErrorStyle() {
+  @include inputStyle();
+  border: 0.5px solid $primary-color;
+  &:focus {
+    border: 1px solid $primary-color;
+  }
+}
+@mixin text($size, $weight, $size-sm) {
+  color: white;
+  @include fontFamily();
+  font-size: $size;
+  letter-spacing: 1px;
+  font-weight: $weight;
+  display: block;
+  @media screen and (max-width: $width) {
+    font-size: $size-sm;
+    letter-spacing: 0.5px;
+  }
+}
+@mixin modelContainer {
+  display: grid;
+  grid-template-columns: auto;
+  text-align: left;
+  grid-row-gap: 10px;
+}

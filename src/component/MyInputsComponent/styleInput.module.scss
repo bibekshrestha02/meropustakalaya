@@ -1,0 +1,27 @@
+@import '../../sass/color';
+@import '../../sass/mixin';
+
+.inputContainer {
+  @include inputContainerStyle();
+  input {
+    @include inputStyle();
+  }
+}
+.selectInputContainer {
+  @include inputContainerStyle();
+
+  select {
+    @include inputStyle();
+  }
+}
+.textAreaInputContainer {
+  @include inputContainerStyle();
+
+  textarea {
+    @include inputStyle();
+  }
+}
+.fileInputContainer {
+  @include inputContainerStyle();
+  text-align: center;
+}

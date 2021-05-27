@@ -1,0 +1,108 @@
+@import '../../../sass/color';
+@import '../../../sass/mixin';
+
+.dashboardContainer {
+  .cardsContainer {
+    padding: $padding;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 300px);
+    justify-content: center;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+  }
+}
+.adminPageContainer {
+  padding: $padding;
+
+  @media screen and (max-width: $width) {
+    padding: $padding-sm;
+  }
+}
+.bookControlContainer {
+  padding: $padding;
+
+  @media screen and (max-width: $width) {
+    padding: $padding-sm;
+  }
+}
+.userControlContainer {
+  padding: $padding;
+  @media screen and (max-width: $width) {
+    padding: $padding-sm;
+  }
+}
+.createUserContainer {
+  @include flex(row, center, center);
+  margin: $padding;
+  Form {
+    @include modelContainer();
+  }
+  @media screen and (max-width: $width) {
+    margin: $padding-sm;
+  }
+}
+
+.createBookPageContainer {
+  @include flex(row, center, center);
+  margin: $padding;
+  @media screen and (max-width: $width) {
+    margin: $padding-sm;
+  }
+  Form {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-column-gap: 40px;
+    @media screen and (max-width: $width) {
+      grid-column-gap: 0px;
+      grid-template-columns: auto;
+      grid-auto-rows: inherit;
+    }
+    .formContainer {
+      display: grid;
+      grid-row-gap: 10px;
+    }
+    .fileContainer {
+      @include flex(column, center, none);
+      :nth-child(n) {
+        margin-top: 10px;
+      }
+    }
+    .fileShowContainer {
+      display: grid;
+      grid-template-columns: auto auto;
+      padding: 5px;
+      width: 150px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      @include boxShadow();
+      background-color: white;
+      :nth-child(2) {
+        cursor: pointer;
+      }
+      span {
+        padding: 1px;
+        overflow: hidden;
+      }
+    }
+  }
+}
+
+.bookReviewPageContainer {
+  @include modelContainer();
+  padding: $padding;
+  grid-row-gap: 20px;
+  @media screen and (max-width: $width) {
+    padding: $padding-sm;
+  }
+}
+.priceControlPageContainer {
+  @include modelContainer();
+  padding: $padding;
+  Form {
+    @include modelContainer;
+  }
+  @media screen and (max-width: $width) {
+    padding: $padding-sm;
+  }
+}

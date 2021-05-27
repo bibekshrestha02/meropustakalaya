@@ -1,0 +1,62 @@
+@import '../../../../sass/color';
+@import '../../../../sass/mixin';
+.reviewCardContainer {
+  display: grid;
+  align-items: flex-start;
+  justify-content: flex-start;
+  grid-row-gap: 10px;
+  .ratingContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .errorText {
+      @include errorText();
+    }
+  }
+}
+.userCommentContainer {
+  display: flex;
+  border-bottom: 1px solid $border-color;
+  padding: 5px;
+  .content {
+    padding-left: 10px;
+    :nth-child(1) {
+      @include title();
+      font-size: 14px;
+    }
+    .delete {
+      cursor: pointer;
+    }
+  }
+}
+.bookDetailsHeaderContainer {
+  display: grid;
+  grid-template-columns: 20% 80%;
+  @include boxShadow();
+  @include fontFamily();
+  padding: 10px;
+  :nth-child(2) {
+    display: grid;
+    grid-row-gap: 1px;
+    justify-content: flex-start;
+  }
+  @media (max-width: $width) {
+    grid-template-columns: auto;
+    grid-row-gap: 10px;
+  }
+  span {
+    color: $black;
+    font-size: 20px;
+  }
+  .imageContainer {
+    height: 200px;
+    width: 98%;
+    overflow: hidden;
+    border-radius: 5px;
+    .bookImage {
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+    }
+  }
+}

@@ -1,0 +1,14 @@
+@import '../../../../sass/mixin';
+@import '../../../../sass/color';
+
+.subscriptionDetailContainer {
+  @include modelContainer();
+}
+.sortContainer {
+  display: flex;
+  justify-content: space-between;
+  @media screen and (max-width: $width) {
+    display: grid;
+    grid-row-gap: 10px;
+  }
+}

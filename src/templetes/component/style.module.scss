@@ -1,0 +1,47 @@
+@import '../../sass/color';
+@import '../../sass/_mixin';
+.navContainer {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1.5px 5px 0 rgba(0, 0, 0, 0.19);
+  display: grid;
+  grid-template-columns: 25% 75%;
+  align-items: center;
+  height: 60px;
+  padding: 0px $padding;
+  .secondChild {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    @media screen and (max-width: $width) {
+      display: none;
+    }
+  }
+  @media screen and (max-width: $width) {
+    grid-template-columns: auto;
+    height: 60px;
+    padding: 0px $padding-sm;
+  }
+}
+
+.footer {
+  background-color: $primary-color;
+  @include fontFamily();
+  color: white;
+  letter-spacing: 1px;
+  flex: 1;
+  @include flex(column, center, center);
+  padding: 20px 0px;
+  width: 100%;
+  .logo {
+    cursor: pointer;
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+  }
+  .text {
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+  }
+}

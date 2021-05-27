@@ -1,0 +1,64 @@
+@import '../../sass/_color';
+@import '../../sass/_mixin';
+
+.bookViewNavContainer {
+  @include boxShadow();
+  @include flex(row, center, space-between);
+  padding: 15px;
+}
+.dropDownContainer {
+  float: left;
+  overflow: hidden;
+  .title {
+    @include link($border-color, $black);
+    border: none;
+    color: $black;
+    outline: none;
+    font-size: 16px;
+    padding: 14px 14px;
+    background-color: inherit;
+    margin: 0;
+    cursor: pointer;
+    text-transform: uppercase;
+    &:hover {
+      color: $black;
+    }
+  }
+
+  .dropdownContent {
+    display: none;
+    position: absolute;
+    min-width: 100px;
+    background-color: white;
+    @include boxShadow();
+    z-index: 2;
+
+    &:hover {
+      display: block;
+    }
+  }
+  &:hover .dropdownContent {
+    display: block;
+  }
+}
+.dropDownSmComponent {
+  .titleContainer {
+    @include flex(row, center, space-between);
+    padding-right: 20px;
+    height: 40px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    @include link($border-color, $black);
+  }
+  .link {
+    @include link($border-color, $black);
+  }
+  .activeLink {
+    @include link($primary-color, $primary-color);
+    // padding: 0px 20px;
+  }
+  .dropdownLink {
+    display: block;
+    padding: 10px 12px;
+  }
+}

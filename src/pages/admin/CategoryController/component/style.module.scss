@@ -1,0 +1,6 @@
+@import '../../../../sass/mixin';
+.addCategoryContainer {
+  Form {
+    @include modelContainer();
+  }
+}

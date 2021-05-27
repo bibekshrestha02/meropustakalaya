@@ -1,0 +1,52 @@
+@import '../../../../sass/mixin';
+@import '../../../../sass/color';
+
+.forgetPasswordContainer {
+  form {
+    display: grid;
+    grid-row-gap: 5px;
+  }
+}
+.imageContainer {
+  @include flex(row, center, space-between);
+  padding: 20px 0px;
+  .profile {
+    display: flex;
+    align-items: center;
+    :nth-child(1) {
+      margin-right: 5px;
+    }
+  }
+  @media screen and (max-width: $width) {
+    padding: 10px 0px;
+    @include flex(column, flex-start, none);
+    div {
+      :nth-child(1) {
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
+.formContainer {
+  @include inputContainerStyle();
+  padding-bottom: 10px;
+  .changePassword {
+    padding: 10px 0px;
+    display: block;
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  @media screen and (max-width: $width) {
+    padding: $padding-sm;
+  }
+}
+.membershipContainer {
+  @include flex(row, center, space-between);
+  @media screen and (max-width: $width) {
+    // @include flex(column, flex-start, none);
+    display: grid;
+    grid-row-gap: 5px;
+  }
+}

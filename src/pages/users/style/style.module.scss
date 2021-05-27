@@ -1,0 +1,137 @@
+@import '../../../sass/color';
+@import '../../../sass/mixin';
+.homePage {
+  display: grid;
+  padding-top: 20px;
+  grid-row-gap: 20px;
+  text-align: center;
+}
+.saveContainer {
+  display: grid;
+  text-align: center;
+  // grid-row-gap: 15px;
+  align-items: flex-start;
+  padding: $padding;
+  padding-top: 20px;
+  min-height: 50vh;
+  @media screen and (max-width: $width) {
+    padding: $padding-sm;
+  }
+}
+.bookPage {
+  display: grid;
+  grid-template-columns: 20% 80%;
+  margin-top: 40px;
+  padding: 0px $padding;
+  min-height: 50vh;
+  @media screen and (max-width: $width) {
+    margin-top: 20px;
+    grid-template-columns: 1fr;
+    grid-row-gap: 10px;
+    justify-content: center;
+    padding: 0px $padding-sm;
+  }
+}
+.bookDetailContainer {
+  margin: $padding;
+  display: grid;
+  grid-row-gap: 20px;
+  font-size: 16px;
+  letter-spacing: 1px;
+  color: $black;
+  @media screen and (max-width: $width) {
+    margin: $padding-sm;
+  }
+}
+
+.authCloseContainer {
+  position: none;
+  display: none;
+}
+.authContainer {
+  Form {
+    margin: $padding;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    grid-row-gap: 10px;
+    text-align: center;
+    .buttonContainer {
+      text-align: left;
+      font-size: 18px;
+      border: 1px solid $border-color;
+      letter-spacing: 1px;
+      padding: 10px;
+      color: $border-color;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+.membershipPageContainer {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  grid-row-gap: 10px;
+  padding-top: 20px;
+  .priceContainer {
+    @include flex(row, center, space-between);
+  }
+}
+.profileContainer {
+  padding: $padding;
+  min-height: 60vh;
+  display: grid;
+  grid-row-gap: 10px;
+  @media screen and (max-width: $width) {
+    padding: 0px $padding-sm;
+    min-height: 95vh;
+  }
+}
+.pdfPageContainer {
+  text-align: center;
+  .pdf_container {
+    display: flex;
+    justify-content: center;
+    user-select: none;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  @media print {
+    .pdf_container {
+      display: none;
+    }
+  }
+}
+.notFoundPageContainer {
+  @include flex(column, center, center);
+  height: 80vh;
+  .icon {
+    font-size: 200px;
+    color: $primary-color;
+  }
+  span {
+    font-size: 40px;
+    font-weight: bold;
+    color: $black;
+    text-transform: uppercase;
+  }
+  :nth-child(3) {
+    text-transform: lowercase;
+    font-weight: lighter;
+  }
+  @media screen and (max-width: $width) {
+    span {
+      font-size: 25px;
+      font-weight: bold;
+      color: $black;
+      text-transform: uppercase;
+    }
+  }
+}

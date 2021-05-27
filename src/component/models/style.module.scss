@@ -1,0 +1,31 @@
+@import '../../sass/color';
+@import '../../sass/mixin';
+
+.loadingComponent {
+  text-align: center;
+}
+.notFoundPageContainer {
+  @include flex(column, center, center);
+  height: 80vh;
+  .icon {
+    font-size: 150px;
+    color: $primary-color;
+  }
+  span {
+    font-size: 20px;
+    color: $black;
+  }
+  .message {
+    font-size: 20px;
+    font-weight: bold;
+    color: $black;
+  }
+  @media screen and (max-width: $width) {
+    span {
+      font-size: 25px;
+      font-weight: bold;
+      color: $black;
+      text-transform: uppercase;
+    }
+  }
+}

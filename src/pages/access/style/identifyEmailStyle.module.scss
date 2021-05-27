@@ -1,0 +1,17 @@
+@import '../../../sass/color';
+@import '../../../sass/mixin';
+
+.container {
+  padding: $padding-sm;
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 40px;
+  align-items: center;
+  text-align: center;
+  form {
+    display: grid;
+    grid-row-gap: 10px;
+  }
+}

@@ -1,0 +1,13 @@
+@import '../../../sass/color';
+@import '../../../sass/mixin';
+
+.container {
+  padding: $padding-sm;
+  display: grid;
+  //   background-color: blue;
+  grid-row-gap: 10px;
+  padding-top: 40px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}

@@ -1,0 +1,114 @@
+@import '../sass/color';
+@import '../sass/mixin';
+.button {
+  user-select: none;
+  width: auto;
+  border: 1px solid $primary-color;
+  font-size: 16px;
+  @include fontFamily();
+  padding: 10px;
+  border-radius: 10px;
+  letter-spacing: 1px;
+  transition: background-color 0.5s;
+  transition: color 0.5s;
+  background-color: $primary-color;
+  color: white;
+  text-align: center;
+  outline: none !important;
+  &:hover {
+    background-color: #ef5353b9;
+    cursor: pointer;
+    color: white;
+  }
+}
+.outLineButton {
+  border: 1px solid $primary-color;
+  font-size: 16px;
+  @include fontFamily();
+  padding: 6px;
+  border-radius: 5px;
+  letter-spacing: 1px;
+  transition: background-color 0.5s;
+  transition: color 0.5s;
+  background-color: white;
+  color: $primary-color;
+  text-align: center;
+  outline: none !important;
+
+  &:hover {
+    background-color: $primary-color;
+    cursor: pointer;
+    color: white;
+  }
+}
+
+.title {
+  @include title();
+  user-select: none;
+}
+.titleResponsive {
+  @include title();
+  @media (max-width: $width) {
+    text-align: center;
+  }
+}
+.bookMark {
+  color: $primary-color;
+  transition: color 1s;
+  cursor: pointer;
+  &:hover {
+    color: rgba(36, 117, 176, 0.4);
+  }
+}
+.rating {
+  border: none;
+  outline: none;
+  &:focus {
+    outline: none !important;
+    border: none;
+  }
+}
+.logo {
+  user-select: none;
+
+  color: $primary-color;
+  font-weight: bold;
+  font-size: 30px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  @media (max-width: $width) {
+    font-size: 25px;
+  }
+}
+.profileImage {
+  background-color: $primary-color;
+  color: white;
+  border-radius: 20px;
+  width: 30px;
+  height: 30px;
+  font-size: 14px;
+  font-weight: bold;
+  @include fontFamily();
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profileImage_form {
+  background-color: $primary-color;
+  color: white;
+  width: 60px;
+  height: 60px;
+  font-weight: bold;
+  line-height: 60px;
+  text-align: center;
+  border-radius: 50px;
+  font-size: 30px;
+  @include fontFamily();
+}
+.deleteButtonContainer {
+  button {
+    cursor: pointer;
+  }
+}

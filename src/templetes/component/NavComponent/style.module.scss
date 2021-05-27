@@ -1,0 +1,60 @@
+@import '../../../sass/color';
+@import '../../../sass/mixin';
+
+.linkItemContainerMble {
+  display: grid;
+  grid-template-columns: auto;
+  padding-left: 20px;
+  margin-top: 10px;
+  .link {
+    @include link($border-color, $black);
+    height: 30px;
+  }
+  .activeLink {
+    @include link($primary-color, $primary-color);
+    height: 30px;
+  }
+}
+.linkItemContainer {
+  @include flex(row, center, flex-end);
+  .link {
+    @include link($border-color, $black);
+    padding-right: 15px;
+  }
+  .activeLink {
+    @include link($primary-color, $primary-color);
+    // padding: 0px 20px;
+  }
+  .dropdownLink {
+    display: block;
+    padding: 10px 12px;
+    border-bottom: 0.5px solid $border-color;
+  }
+  @media screen and (max-width: $width) {
+    display: none;
+  }
+}
+.logoContainer {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+.iconMenu {
+  display: none;
+  font-size: 25px;
+  @media screen and (max-width: $width) {
+    display: contents;
+  }
+}
+.roleContainer {
+  @include flex(row, center, space-around);
+  :nth-child(1) {
+    margin-right: 5px;
+  }
+}
+.headerContainer {
+  @include flex(column, center, center);
+  min-height: 100px;
+  :nth-child(2) {
+    padding: 10px;
+  }
+}

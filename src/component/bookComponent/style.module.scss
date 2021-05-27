@@ -1,0 +1,153 @@
+@import '../../sass/color';
+@import '../../sass/mixin';
+.userCommentContainer {
+  padding: 10px;
+  @include flex(row, flex-start, flex-start);
+  .content {
+    padding-left: 10px;
+    .dateStyle {
+      display: block;
+      color: gray;
+    }
+  }
+}
+.bookContainer {
+  width: 250px;
+  min-height: 430;
+  height: auto;
+  margin-bottom: 5px;
+  overflow: hidden;
+  background-color: white;
+  text-align: left;
+  @include fontFamily();
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1.5px 5px 0 rgba(0, 0, 0, 0.19);
+  @media (max-width: $width) {
+    width: 250px;
+  }
+  transition: box-shadow 0.5s;
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .imageContainer {
+    background-color: rgb(255, 230, 230);
+    width: 100%;
+    height: 335px;
+    .image {
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+    }
+  }
+  .detailsContainer {
+    @include flex(column, auto, auto);
+    padding: 5px;
+    .title {
+      color: $black;
+      font-weight: bold;
+      font-size: 20px;
+      letter-spacing: 1px;
+      display: block; /* or inline-block */
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      word-wrap: break-word;
+      overflow: hidden;
+      max-height: 4.5em;
+      line-height: 1.5em;
+    }
+    .auther {
+      @include textColor(0.9);
+      font-size: 15px;
+      letter-spacing: 1px;
+      padding-bottom: 2px;
+      display: block; /* or inline-block */
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      word-wrap: break-word;
+      overflow: hidden;
+      max-height: 4.5em;
+      line-height: 1.5em;
+    }
+  }
+  .iconContainer {
+    flex: 1;
+    @include flex(row, center, space-between);
+  }
+}
+.bookContainer_sm {
+  width: 150px;
+  min-height: 230px;
+  height: 230px;
+  margin-bottom: 5px;
+  overflow: hidden;
+  background-color: white;
+  text-align: left;
+  @include fontFamily();
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1.5px 5px 0 rgba(0, 0, 0, 0.19);
+  transition: box-shadow 0.5s;
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .imageContainer {
+    background-color: rgb(255, 230, 230);
+    width: 100%;
+    height: 150px;
+    .image {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+  .detailsContainer {
+    @include flex(column, auto, auto);
+    padding: 5px;
+    .title {
+      color: $black;
+      font-weight: bold;
+      font-size: 16px;
+      letter-spacing: 1px;
+      display: block; /* or inline-block */
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      word-wrap: break-word;
+      overflow: hidden;
+      max-height: 4.5em;
+      line-height: 1.5em;
+    }
+    .auther {
+      @include textColor(0.9);
+      font-size: 15px;
+      letter-spacing: 1px;
+      padding-bottom: 2px;
+      display: block; /* or inline-block */
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      word-wrap: break-word;
+      overflow: hidden;
+      max-height: 4.5em;
+      line-height: 1.5em;
+    }
+  }
+  .iconContainer {
+    flex: 1;
+    @include flex(row, center, space-between);
+  }
+}
+.bookDetailCardTempleteContainer {
+  min-height: 100px;
+  @include boxShadow();
+  // background-color: aquamarine;
+  .title {
+    background-color: #f1f1f1;
+    display: inline-block;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: $black;
+    padding: 5px;
+  }
+  .content {
+    padding: 5px;
+  }
+}

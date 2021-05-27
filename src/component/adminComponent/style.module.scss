@@ -1,0 +1,121 @@
+@import '../../sass/mixin';
+@import '../../sass/color';
+.bookTempletContainer {
+  @include boxShadow();
+  padding: 10px;
+  min-width: 200px;
+  min-height: 100px;
+  display: grid;
+  grid-template-columns: auto;
+  grid-row-gap: 10px;
+  .header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .buttonContainer {
+    font-size: 30px;
+    cursor: pointer;
+  }
+}
+.tableContainer {
+  height: 60vh;
+  overflow: scroll;
+  .utilsContainer {
+    // background-color: blue;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid $border-color;
+    margin-top: 10px;
+  }
+
+  th {
+    border: 1px solid #dddddd;
+    background-color: #f1f1f1;
+    text-align: center;
+    padding: 8px;
+    text-transform: uppercase;
+  }
+  td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+}
+.modelAdminContainer {
+  user-select: none;
+
+  display: block; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  @include flex(row, flex-start, center);
+  .modelContent {
+    background-color: #fefefe;
+    border: 1px solid #888;
+    min-height: 20vh;
+
+    @media screen and (max-width: $width) {
+      width: 90%;
+    }
+  }
+  .modelHeader {
+    background-color: $primary-color;
+    height: 30px;
+    color: white;
+    width: 100%;
+    border-bottom: 1px solid $border-color;
+    @include flex(row, center, space-between);
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 10px;
+    letter-spacing: 1px;
+    .close {
+      cursor: pointer;
+    }
+  }
+  .chilrenContainer {
+    padding: 10px 10px;
+    display: grid;
+    grid-template-columns: auto;
+    text-align: left;
+    grid-row-gap: 10px;
+  }
+}
+.titleValueContainer {
+  span {
+    font-size: 18px;
+    letter-spacing: 2px;
+    color: $black;
+    user-select: none;
+  }
+  :nth-child(2) {
+    font-weight: $black;
+    font-size: 18px;
+    color: $black;
+  }
+}
+.photoContainer {
+  width: 100px;
+  overflow: hidden;
+  cursor: pointer;
+  .image {
+    width: 100%;
+    height: 60px;
+    object-fit: contain;
+  }
+}

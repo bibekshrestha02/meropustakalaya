@@ -3,10 +3,23 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
+import { Provider } from 'react-redux';
+import { combineReducers, createStore, applyMiddleware } from 'redux';
+import ReduxThunk from 'redux-thunk';
+import modelReducer from './store/reducer/modelReducer';
+import authReducer from './store/reducer/authReducer';
+import BookReducer from './store/reducer/bookReducer';
+const reducer = combineReducers({
+  model: modelReducer,
+  auth: authReducer,
+  book: BookReducer,
+});
+const store = createStore(reducer, applyMiddleware(ReduxThunk));
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

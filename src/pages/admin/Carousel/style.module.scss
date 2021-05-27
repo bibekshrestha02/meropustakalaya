@@ -1,0 +1,10 @@
+@import '../../../sass/color';
+@import '../../../sass/mixin';
+
+.carouselContainer {
+  @include modelContainer();
+  padding: $padding;
+  @media screen and (max-width: $width) {
+    padding: $padding-sm;
+  }
+}

@@ -1,0 +1,20 @@
+@import '../../../sass/color';
+@import '../../../sass/mixin';
+.container {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  .signupContainer {
+    padding-top: 20px;
+    text-align: left;
+    Form {
+      display: grid;
+      grid-row-gap: 10px;
+    }
+    .link {
+      @include link(black, $primary-color);
+    }
+  }
+}

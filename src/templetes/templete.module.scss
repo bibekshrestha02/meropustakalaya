@@ -1,0 +1,21 @@
+@import '../sass/color';
+@import '../sass/mixin';
+.mainTempleteContainer {
+  .children {
+    min-height: 80vh;
+  }
+}
+.cardContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 250px);
+  justify-content: center;
+  grid-column-gap: 20px;
+  grid-row-gap: 10px;
+}
+.cardContainer_sm {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 150px);
+  // justify-content: center;
+  grid-column-gap: 20px;
+  grid-row-gap: 10px;
+}

@@ -1,0 +1,18 @@
+@import '../../../../sass/color';
+@import '../../../../sass/mixin';
+.membershipCard {
+  border: 1px solid $border-color;
+  border-radius: 10px;
+  @include flex(row, center, flex-start);
+  height: 55px;
+  padding-left: 10px;
+  cursor: pointer;
+
+  div {
+    margin-left: 10px;
+    text-align: left;
+    line-height: 15px;
+    display: grid;
+    grid-row-gap: 5px;
+  }
+}
