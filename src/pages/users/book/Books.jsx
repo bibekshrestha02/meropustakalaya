@@ -16,7 +16,7 @@ export default function BooksPage() {
               setErrorStatus={setErrorStatus}
             />
             <div>
-              <CardTemplete title='Books' data={data[0]} sm />
+              <CardTemplete title='Books' data={data[0]} />
             </div>
           </div>
         );
