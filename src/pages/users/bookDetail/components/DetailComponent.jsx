@@ -17,11 +17,7 @@ export default function BookDetailsHeader({ data }) {
     <>
       <div className={style.bookDetailsHeaderContainer}>
         <div className={style.imageContainer}>
-          <img
-            src={`http://localhost:4000/${data.photo}`}
-            alt='bImage'
-            className={style.bookImage}
-          />
+          <img src={data.photo} alt='bImage' className={style.bookImage} />
         </div>
         <div>
           <Title title={data.name} fontSize='25px' />

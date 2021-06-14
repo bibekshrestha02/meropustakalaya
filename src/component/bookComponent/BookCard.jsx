@@ -4,7 +4,6 @@ import Rating from '../../assets/RatingAsset';
 import { Link } from 'react-router-dom';
 import Bookmark from '../../assets/BookmarkAsset';
 import { useSelector } from 'react-redux';
-
 export default function BookCard({
   title,
   imageURL,
@@ -20,11 +19,7 @@ export default function BookCard({
   return (
     <div className={small ? style.bookContainer_sm : style.bookContainer}>
       <div className={style.imageContainer}>
-        <img
-          src={`http://localhost:4000/${imageURL}`}
-          alt='Book img'
-          className={style.image}
-        />
+        <img src={imageURL} alt='img' className={style.image} />
       </div>
       <div className={style.detailsContainer}>
         <div className={style.iconContainer}>
