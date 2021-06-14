@@ -41,7 +41,7 @@ export default function CategoryCard({ category, filterSubmitHandler }) {
                       name='sort'
                       value={e.name}
                     />
-                    <span>{e.title}</span>
+                    <span> {e.title}</span>
                   </label>
                 );
               })}
@@ -59,7 +59,7 @@ export default function CategoryCard({ category, filterSubmitHandler }) {
                         name='category'
                         value={e.name}
                       />
-                      <span>{e.title}</span>
+                      <span> {e.title}</span>
                     </label>
                   );
                 })}
