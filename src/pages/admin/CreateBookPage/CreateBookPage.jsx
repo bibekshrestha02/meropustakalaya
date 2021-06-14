@@ -14,7 +14,7 @@ import FileContainer from './component/FileContainer';
 import GetFetchPageTemplete from '../../../templetes/GetFetchPageTemplete';
 const validationSchema = Yup.object({
   name: Yup.string().min(5).max(80).required('Enter Book Title'),
-  autherName: Yup.string().min(2).max(80).required('Enter Auhter name'),
+  autherName: Yup.string().min(2).max(80).required('Enter Auther name'),
   pages: Yup.number().min(2).max(5000).required('Enter Book Pages'),
   description: Yup.string()
     .min(10)
