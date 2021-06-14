@@ -1,11 +1,11 @@
 @import '../../sass/color';
 @import '../../sass/_mixin';
 .navContainer {
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1.5px 5px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1.5px 5px 0 rgba(0, 0, 0, 0.5);
   display: grid;
   grid-template-columns: 25% 75%;
   align-items: center;
-  height: 60px;
+  height: 10vh;
   padding: 0px $padding;
   .secondChild {
     display: flex;

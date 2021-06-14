@@ -6,9 +6,10 @@ export default function MainTempletes({ children, noCarusal, noFooter }) {
   return (
     <div className={style.mainTempleteContainer}>
       <MainNav />
-
-      <div className={style.children}>{children}</div>
-      <Footer />
+      <div className={style.scrollContainer}>
+        <div className={style.children}>{children}</div>
+        <Footer />
+      </div>
     </div>
   );
 }
