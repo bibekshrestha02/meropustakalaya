@@ -64,24 +64,28 @@
   @include flex(column, center, center);
   height: 80vh;
   .icon {
-    font-size: 150px;
+    font-size: 100px;
     color: $primary-color;
   }
   span {
-    font-size: 20px;
+    font-size: 16px;
     color: $black;
   }
   .message {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     color: $black;
   }
   @media screen and (max-width: $width) {
+    .icon {
+      font-size: 50px;
+      color: $primary-color;
+    }
     span {
-      font-size: 25px;
-      font-weight: bold;
-      color: $black;
-      text-transform: uppercase;
+      font-size: 14px;
+    }
+    .message {
+      font-size: 14px;
     }
   }
 }
