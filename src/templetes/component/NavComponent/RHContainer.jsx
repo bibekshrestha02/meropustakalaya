@@ -37,7 +37,7 @@ export default function RHContainer({ loginHandler, membershipHandler }) {
 
   return (
     <div className={style.roleContainer}>
-      {isLogin ? authNavRHC : unAuthNavRHC}
+      {isLogin && role ? authNavRHC : unAuthNavRHC}
     </div>
   );
 }
