@@ -24,7 +24,10 @@ export const useFetchApi = (url, ref) => {
             setLoading(false);
           });
       })();
+    } else {
+      setLoading(false);
     }
+
     return () => {
       ref.current = false;
     };
