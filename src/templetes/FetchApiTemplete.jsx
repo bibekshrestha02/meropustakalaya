@@ -9,7 +9,8 @@ const FetchApiTemplete = ({ loading, children, error }) => {
         <LoadingComponent />
       </MainTempletes>
     );
-  } else if (error) {
+  }
+  if (error) {
     return (
       <MainTempletes>
         <ErrorPageContainer />
