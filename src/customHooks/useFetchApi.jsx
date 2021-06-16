@@ -20,7 +20,8 @@ export const useFetchApi = (url, ref) => {
             })
           )
           .catch((error) => {
-            setError(error);
+            setError(true);
+            setLoading(false);
           });
       })();
     }
@@ -29,5 +30,5 @@ export const useFetchApi = (url, ref) => {
     };
   }, [url, ref]);
 
-  return { data, loading, error };
+  return { data, loading, error, setData, setError, setLoading };
 };
