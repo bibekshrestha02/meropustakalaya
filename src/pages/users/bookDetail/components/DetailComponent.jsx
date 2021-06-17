@@ -6,18 +6,26 @@ import Rating from '../../../../assets/RatingAsset';
 import Bookmark from '../../../../assets/BookmarkAsset';
 import { useSelector } from 'react-redux';
 import BooksDetailsCardContainer from '../../../../component/bookComponent/BooksDetailsCardContainer';
-import { useHistory } from 'react-router-dom';
-export default function BookDetailsHeader({ data }) {
-  const isLogin = useSelector((state) => state.auth.isLogin);
-  const { push } = useHistory();
-  const readBookFn = (path) => {
-    push(`/book/view/${path}`);
+import ImageLoadingComponent from '../../../../component/models/ImageLoadingComponent';
+export default function BookDetailsHeader({ data, navigateBookFile }) {
+  const [isImageLoaded, setImageLoad] = React.useState(false);
+  const imageLoadHandler = () => {
+    setImageLoad(true);
   };
+  const isLogin = useSelector((state) => state.auth.isLogin);
+
   return (
     <>
       <div className={style.bookDetailsHeaderContainer}>
         <div className={style.imageContainer}>
-          <img src={data.photo} alt='bImage' className={style.bookImage} />
+          <ImageLoadingComponent isImageLoaded={isImageLoaded} />
+          <img
+            src={data.photo}
+            alt='bImage'
+            className={style.bookImage}
+            onLoad={imageLoadHandler}
+            onError={imageLoadHandler}
+          />
         </div>
         <div>
           <Title title={data.name} fontSize='25px' />
@@ -31,9 +39,10 @@ export default function BookDetailsHeader({ data }) {
 
           <Rating value={data.rating} size={20} isEdit={false} />
           <Button
+            styleObj={{ fontSize: '16px', width: '200px' }}
             title='Read now'
             fontSize='13px'
-            onClickFn={() => readBookFn(data.file)}
+            onClickFn={navigateBookFile}
           />
         </div>
       </div>
