@@ -11,19 +11,8 @@ import Axios from '../../../utils/Axios';
 import { useHistory } from 'react-router-dom';
 import ImageContainer from './component/ImageContainer';
 import FileContainer from './component/FileContainer';
-import GetFetchPageTemplete from '../../../templetes/GetFetchPageTemplete';
-const validationSchema = Yup.object({
-  name: Yup.string().min(5).max(80).required('Enter Book Title'),
-  autherName: Yup.string().min(2).max(80).required('Enter Auther name'),
-  pages: Yup.number().min(2).max(5000).required('Enter Book Pages'),
-  description: Yup.string()
-    .min(10)
-    .max(2000)
-    .required('Enter Book Description'),
-  categoryId: Yup.string().required('Select Book Category'),
-  bookImage: Yup.mixed().required('Select Book Photo'),
-  bookFile: Yup.mixed().required('Select Book PDF'),
-});
+import FetchApiTemplete from '../../../templetes/FetchApiTemplete';
+import { useFetchApi } from '../../../customHooks/useFetchApi';
 export default function CreateBookPage() {
   const { push } = useHistory();
   const initialValues = {
@@ -35,9 +24,27 @@ export default function CreateBookPage() {
     bookImage: null,
     bookFile: null,
   };
-
+  const validationSchema = Yup.object({
+    name: Yup.string().min(5).max(80).required('Enter Book Title'),
+    autherName: Yup.string().min(2).max(80).required('Enter Auther name'),
+    pages: Yup.number().min(2).max(5000).required('Enter Book Pages'),
+    description: Yup.string()
+      .min(10)
+      .max(2000)
+      .required('Enter Book Description'),
+    categoryId: Yup.string().required('Select Book Category'),
+    bookImage: Yup.mixed().required('Select Book Photo'),
+    bookFile: Yup.mixed().required('Select Book PDF'),
+  });
   const [image, setImage] = useState();
-
+  const isComponentMount = React.useRef(true);
+  const getCategory = () => {
+    return Axios.get('/categories/');
+  };
+  const { data, loading, error } = useFetchApi(
+    [getCategory()],
+    isComponentMount
+  );
   const imageHanlder = (e) => {
     setImage(URL.createObjectURL(e.target.files[0]));
   };
@@ -75,82 +82,77 @@ export default function CreateBookPage() {
       }
     }
   };
-  return (
-    <GetFetchPageTemplete urls={['/categories/']}>
-      {({ data }) => {
-        const category = data[0];
-        return (
-          <div className={style.createBookPageContainer}>
-            <AdminWaperContainer title='Add Book'>
-              <Formik
-                initialValues={initialValues}
-                validationSchema={validationSchema}
-                onSubmit={submitHandler}>
-                {({ values, handleChange, setFieldValue, isSubmitting }) => (
-                  <Form>
-                    <div className={style.fileContainer}>
-                      <ImageContainer
-                        values={values}
-                        image={image}
-                        imageHanlder={imageHanlder}
-                        handleChange={handleChange}
-                        setFieldValue={setFieldValue}
-                      />
+  let category = !loading && !error ? data[0] : [];
 
-                      <FileContainer
-                        values={values}
-                        setFieldValue={setFieldValue}
-                      />
-                    </div>
-                    <div className={style.formContainer}>
-                      <MyTextInput
-                        label='Book Title'
-                        placeholder='Enter Book Title'
-                        name='name'
-                        type='text'
-                      />
-                      <MyTextInput
-                        label='Author Name'
-                        name='autherName'
-                        placeholder='Enter Book Author Name'
-                        type='name'
-                      />
-                      <MyTextInput
-                        label='Book Pages'
-                        name='pages'
-                        placeholder='Enter Book Pages'
-                        type='number'
-                      />
-                      <MyTextAreaInput
-                        label='Write Book Description '
-                        name='description'
-                        placeholder='Enter Book Descriptions'
-                      />
-                      <MySelectInput
-                        label='Select Book Category'
-                        name='categoryId'>
-                        <option value=''>select book category</option>
-                        {category.map((e) => {
-                          return (
-                            <option key={e._id} value={e._id}>
-                              {e.title}
-                            </option>
-                          );
-                        })}
-                      </MySelectInput>
-                      <Button
-                        title='Add Book'
-                        type='submit'
-                        isSubmitting={isSubmitting}
-                      />
-                    </div>
-                  </Form>
-                )}
-              </Formik>
-            </AdminWaperContainer>
-          </div>
-        );
-      }}
-    </GetFetchPageTemplete>
+  return (
+    <FetchApiTemplete loading={loading} error={error}>
+      <div className={style.createBookPageContainer}>
+        <AdminWaperContainer title='Add Book'>
+          <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={submitHandler}>
+            {({ values, handleChange, setFieldValue, isSubmitting }) => (
+              <Form>
+                <div className={style.fileContainer}>
+                  <ImageContainer
+                    values={values}
+                    image={image}
+                    imageHanlder={imageHanlder}
+                    handleChange={handleChange}
+                    setFieldValue={setFieldValue}
+                  />
+
+                  <FileContainer
+                    values={values}
+                    setFieldValue={setFieldValue}
+                  />
+                </div>
+                <div className={style.formContainer}>
+                  <MyTextInput
+                    label='Book Title'
+                    placeholder='Enter Book Title'
+                    name='name'
+                    type='text'
+                  />
+                  <MyTextInput
+                    label='Author Name'
+                    name='autherName'
+                    placeholder='Enter Book Author Name'
+                    type='name'
+                  />
+                  <MyTextInput
+                    label='Book Pages'
+                    name='pages'
+                    placeholder='Enter Book Pages'
+                    type='number'
+                  />
+                  <MyTextAreaInput
+                    label='Write Book Description '
+                    name='description'
+                    placeholder='Enter Book Descriptions'
+                  />
+                  <MySelectInput label='Select Book Category' name='categoryId'>
+                    <option value=''>Select Book Category</option>
+                    {category.map((e) => {
+                      return (
+                        <option key={e._id} value={e._id}>
+                          {e.title}
+                        </option>
+                      );
+                    })}
+                  </MySelectInput>
+                  <Button
+                    title='Add Book'
+                    type='submit'
+                    isSubmitting={isSubmitting}
+                  />
+                </div>
+              </Form>
+            )}
+          </Formik>
+        </AdminWaperContainer>
+      </div>
+    </FetchApiTemplete>
   );
 }
