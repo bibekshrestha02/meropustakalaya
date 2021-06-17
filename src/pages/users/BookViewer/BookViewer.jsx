@@ -1,21 +1,27 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import ReactLoader from 'react-loader-spinner';
 import { Document, Page, pdfjs } from 'react-pdf';
 import style from '../style/style.module.scss';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import FileHeaderComponent from './component/FileHeaderComponent';
 import ErrorComponent from './component/ErrorComponent';
+import Axios from '../../../utils/Axios';
+import LoadingComponent from '../../../component/models/LoadingComponent';
+import FetchApiTemplete from '../../../templetes/FetchApiTemplete';
+import { useFetchApi } from '../../../customHooks/useFetchApi';
 export default function BookViewerPage() {
   pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
-  const { path } = useParams();
-  let token = localStorage.getItem('token');
-
+  const { id } = useParams();
+  const isComponentMount = React.useRef(true);
+  const getBookFile = () => {
+    return Axios.get(`/books/file/${id}`);
+  };
+  const { data, loading, error } = useFetchApi(
+    [getBookFile()],
+    isComponentMount
+  );
   const url = {
-    url: `http://localhost:4000/api/v1/${path}`,
-    httpHeaders: {
-      'x-auth-token': token,
-    },
+    url: !loading && !error && data[0].file,
   };
   // book page
   const [numPages, setNumPages] = useState(null);
@@ -27,15 +33,8 @@ export default function BookViewerPage() {
   };
   const errorHanlder = (error) => {
     const { status } = error;
+    console.log(error);
     setErrorStatus(status);
-    // if (!token) {
-    //   setErrorMessage('Login to read Book');
-    // } else if (status === 403) {
-    //   setErrorMessage('You are not authorized to access this page');
-    // } else {
-    //   alert('Something went very wrong.Please try again');
-    //   goBack();
-    // }
   };
   return (
     <div className={style.pdfPageContainer}>
@@ -44,16 +43,18 @@ export default function BookViewerPage() {
         setPageNumber={setPageNumber}
         pageNumber={pageNumber}
       />
-      <Document
-        loading={<ReactLoader type='ThreeDots' color='red' />}
-        onLoadError={errorHanlder}
-        file={url}
-        error={<ErrorComponent status={errorStatus} />}
-        onLoadSuccess={onDocumentLoadSuccess}
-        onContextMenu={(e) => e.preventDefault()}
-        className={style.pdf_container}>
-        <Page pageNumber={pageNumber} />
-      </Document>
+      <FetchApiTemplete loading={loading} error={error} noNav>
+        <Document
+          loading={<LoadingComponent />}
+          onLoadError={errorHanlder}
+          file={url}
+          error={<ErrorComponent status={errorStatus} />}
+          onLoadSuccess={onDocumentLoadSuccess}
+          onContextMenu={(e) => e.preventDefault()}
+          className={style.pdf_container}>
+          <Page pageNumber={pageNumber} />
+        </Document>
+      </FetchApiTemplete>
     </div>
   );
 }
