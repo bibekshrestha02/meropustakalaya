@@ -59,7 +59,12 @@ const AuthStore = (state = initalState, action) => {
       return state;
     case 'save':
       let { data } = action;
-      state.savedBooks = data;
+      let isSave = state.savedBooks.includes(data);
+      if (isSave) {
+        state.savedBooks = state.savedBooks.filter((e) => e !== data);
+      } else {
+        state.savedBooks.push(data);
+      }
       return state;
     case 'subscribtion':
       state.subscriptionDetail = action.data;

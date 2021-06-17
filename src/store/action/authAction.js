@@ -57,8 +57,6 @@ export const logout = () => {
 };
 export const saveBook = (book) => {
   return async (dispatch) => {
-    let res = await Axios.post(`/users/saves/${book}`);
-
-    dispatch({ type: 'save', data: res.data.data });
+    dispatch({ type: 'save', data: book });
   };
 };
