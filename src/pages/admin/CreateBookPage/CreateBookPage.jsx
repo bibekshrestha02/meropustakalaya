@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import AdminWaperContainer from '../../../component/adminComponent/AdminWaperContainer';
@@ -10,20 +10,15 @@ import MyTextInput from '../../../component/MyInputsComponent/MyTextInput';
 import Axios from '../../../utils/Axios';
 import { useHistory } from 'react-router-dom';
 import ImageContainer from './component/ImageContainer';
-import FileContainer from './component/FileContainer';
 import FetchApiTemplete from '../../../templetes/FetchApiTemplete';
 import { useFetchApi } from '../../../customHooks/useFetchApi';
 export default function CreateBookPage() {
-  const { push } = useHistory();
-  const initialValues = {
-    name: '',
-    autherName: '',
-    pages: '',
-    description: '',
-    categoryId: '',
-    bookImage: null,
-    bookFile: null,
-  };
+  const history = useHistory();
+  let book;
+  if (history.location.state) {
+    book = history.location.state.book;
+  }
+
   const validationSchema = Yup.object({
     name: Yup.string().min(5).max(80).required('Enter Book Title'),
     autherName: Yup.string().min(2).max(80).required('Enter Auther name'),
@@ -33,10 +28,9 @@ export default function CreateBookPage() {
       .max(2000)
       .required('Enter Book Description'),
     categoryId: Yup.string().required('Select Book Category'),
-    bookImage: Yup.mixed().required('Select Book Photo'),
-    bookFile: Yup.mixed().required('Select Book PDF'),
+    photo: Yup.string().required('Select Book Photo'),
+    file: Yup.string().required('Select Book PDF'),
   });
-  const [image, setImage] = useState();
   const isComponentMount = React.useRef(true);
   const getCategory = () => {
     return Axios.get('/categories/');
@@ -45,37 +39,23 @@ export default function CreateBookPage() {
     [getCategory()],
     isComponentMount
   );
-  const imageHanlder = (e) => {
-    setImage(URL.createObjectURL(e.target.files[0]));
-  };
-  const submitHandler = async (values) => {
+
+  const submitHandler = async (values, action) => {
     try {
-      const {
-        bookImage,
-        bookFile,
-        name,
-        pages,
-        autherName,
-        description,
-        categoryId,
-      } = values;
-      const formData = new FormData();
-      formData.append('bookImage', bookImage);
-      formData.append('bookFile', bookFile);
-      formData.append('name', name);
-      formData.append('pages', pages);
-      formData.append('autherName', autherName);
-      formData.append('description', description);
-      formData.append('categoryId', categoryId.toString());
-      await Axios.post('/books/', formData);
-      alert('Successfully Created');
-      push('/admin/book');
+      if (book) {
+        await Axios.put(`/books/${book._id}`, values);
+        alert('Successfully!');
+        history.goBack();
+      } else {
+        await Axios.post('/books/', values);
+        alert('Successfully!');
+        action.resetForm();
+      }
     } catch (error) {
       let { status } = error.response;
       let { data } = error.response;
       if (status === 500) {
         alert('Something went wrong.Try later');
-        push('/admin/book');
       }
       if (status === 400) {
         alert(data.message);
@@ -83,7 +63,19 @@ export default function CreateBookPage() {
     }
   };
   let category = !loading && !error ? data[0] : [];
-
+  const initialValues = {
+    name: book ? book.name : '',
+    autherName: book ? book.autherName : '',
+    pages: book ? book.pages : '',
+    description: book ? book.description : '',
+    categoryId: book
+      ? !loading && !error
+        ? category.find((e) => e.name === book.category)._id
+        : ''
+      : '',
+    photo: book ? book.photo : '',
+    file: book ? book.file : '',
+  };
   return (
     <FetchApiTemplete loading={loading} error={error}>
       <div className={style.createBookPageContainer}>
@@ -92,21 +84,25 @@ export default function CreateBookPage() {
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={submitHandler}>
-            {({ values, handleChange, setFieldValue, isSubmitting }) => (
+            {({ values, isSubmitting }) => (
               <Form>
                 <div className={style.fileContainer}>
-                  <ImageContainer
-                    values={values}
-                    image={image}
-                    imageHanlder={imageHanlder}
-                    handleChange={handleChange}
-                    setFieldValue={setFieldValue}
+                  <ImageContainer image={values.photo} />
+                  <MyTextInput
+                    placeholder='Enter Book Image URl'
+                    name='photo'
+                    type='text'
                   />
-
-                  <FileContainer
-                    values={values}
-                    setFieldValue={setFieldValue}
+                  <MyTextInput
+                    placeholder='Enter Book File URL'
+                    name='file'
+                    type='text'
                   />
+                  {values.file && (
+                    <a href={values.file} target='_blank' rel='noreferrer'>
+                      View Book File
+                    </a>
+                  )}
                 </div>
                 <div className={style.formContainer}>
                   <MyTextInput
@@ -143,7 +139,7 @@ export default function CreateBookPage() {
                     })}
                   </MySelectInput>
                   <Button
-                    title='Add Book'
+                    title={book ? 'Update Book' : 'Add Book'}
                     type='submit'
                     isSubmitting={isSubmitting}
                   />

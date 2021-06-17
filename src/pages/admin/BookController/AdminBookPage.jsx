@@ -13,7 +13,7 @@ export default function BookControlPage() {
   const { push } = useHistory();
   const isComponentMount = React.useRef(true);
   const getBooks = () => {
-    return Axios.get('/books/');
+    return Axios.get('/books/adminBooks');
   };
   const { data, loading, error, setData } = useFetchApi(
     [getBooks()],
@@ -21,6 +21,14 @@ export default function BookControlPage() {
   );
   const createBookHanlder = () => {
     push('/admin/createBook');
+  };
+  const updateBookHandler = (book) => {
+    push({
+      pathname: '/admin/createBook',
+      state: {
+        book,
+      },
+    });
   };
   let res = !loading && !error ? data[0] : [];
   const deleteHanlder = async (id) => {
@@ -45,6 +53,7 @@ export default function BookControlPage() {
     'Add on',
     'Files',
     '',
+    '',
   ];
   const tableData =
     !loading &&
@@ -65,6 +74,9 @@ export default function BookControlPage() {
               name='View'
               handler={() => push(`/book/view/${e.file}`)}
             />
+          </td>
+          <td>
+            <DeleteButton name='Update' handler={() => updateBookHandler(e)} />
           </td>
           <td>
             <DeleteButton handler={() => deleteHanlder(e._id)} />
