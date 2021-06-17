@@ -6,8 +6,8 @@
   border: 1px solid $primary-color;
   font-size: 16px;
   @include fontFamily();
-  padding: 10px;
-  border-radius: 10px;
+  padding: 5px;
+  border-radius: 5px;
   letter-spacing: 1px;
   transition: background-color 0.5s;
   transition: color 0.5s;
@@ -54,11 +54,7 @@
 }
 .bookMark {
   color: $primary-color;
-  transition: color 1s;
   cursor: pointer;
-  &:hover {
-    color: rgba(36, 117, 176, 0.4);
-  }
 }
 .rating {
   border: none;
