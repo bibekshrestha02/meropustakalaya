@@ -60,7 +60,7 @@ export default function App() {
         <Route component={HomePage} path='/' exact />
         <Route component={BookPage} path='/books' />
         <Route component={BookDetailsPage} exact path='/book/:id' />
-        <Route component={BookViewerPage} path='/book/view/:path' />
+        <Route component={BookViewerPage} path='/book/view/:id' />
 
         <UserProtectionRoute Component={SavePage} path='/save' />
         <UserProtectionRoute Component={MembershipPage} path='/membership' />
