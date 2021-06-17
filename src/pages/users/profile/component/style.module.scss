@@ -44,8 +44,8 @@
 }
 .membershipContainer {
   @include flex(row, center, space-between);
+  line-height: 40px;
   @media screen and (max-width: $width) {
-    // @include flex(column, flex-start, none);
     display: grid;
     grid-row-gap: 5px;
   }
