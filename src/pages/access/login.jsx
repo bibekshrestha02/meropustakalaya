@@ -18,6 +18,11 @@ export default function Auth() {
       setSubmitting(false);
       history.push(history.location.state ? history.location.state.path : '/');
     } catch (error) {
+      setSubmitting(false);
+
+      if (!error.response) {
+        return alert('Something went wrong. Check your internet connection');
+      }
       let status = error.response.status;
       let data = error.response.data;
 
@@ -31,7 +36,6 @@ export default function Auth() {
       if (status === 500) {
         alert('Something went wrong,Please try again');
       }
-      setSubmitting(false);
     }
   };
   return (

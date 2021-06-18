@@ -21,6 +21,9 @@ export default function VerificationEmail() {
       }
     } catch (error) {
       setisSubmitting(false);
+      if (!error.response) {
+        return alert('Something went wrong. Check your internet connection');
+      }
       let { data } = error.response;
       let { status } = error.response;
       if (status === 400 && data.type === 'email') {

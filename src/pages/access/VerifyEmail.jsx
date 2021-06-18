@@ -20,6 +20,10 @@ export default function VerifyEmail() {
       alert('OTP code send ');
       setSubmitting(false);
     } catch (error) {
+      setSubmitting(false);
+      if (!error.response) {
+        return alert('Something went wrong. Check your internet connection');
+      }
       let { data } = error.response;
       let { status } = error.response;
       if (status === 400 && data.type === 'email') {
@@ -29,7 +33,6 @@ export default function VerifyEmail() {
       } else {
         alert('Something went wrong');
       }
-      setSubmitting(false);
       history.push('/access/login');
     }
   };

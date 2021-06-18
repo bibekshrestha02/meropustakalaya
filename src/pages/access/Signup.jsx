@@ -22,18 +22,20 @@ export default function Signup() {
 
       history.push(`/access/user/verify/${values.email}`);
     } catch (error) {
-      let status = error.response.status;
-      if (!status) {
+      setSubmitting(false);
+
+      if (!error.response) {
         alert('Something went very wrong, please try again');
+        return;
       }
+      let status = error.response.status;
+
       if (status === 400) {
         setFieldError('email', 'Email already exits');
       }
       if (status === 500) {
         alert('Something went very wrong, please try again');
       }
-
-      setSubmitting(false);
     }
   };
 

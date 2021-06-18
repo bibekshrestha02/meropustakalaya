@@ -23,16 +23,19 @@ export default function VerifyEmail() {
       setSubmitting(false);
       handleReset();
     } catch (error) {
+      setSubmitting(false);
+
+      if (!error.response) {
+        return alert('Something went wrong. Check your internet connection');
+      }
       const { data } = error.response;
       const { status } = error.response;
       if (status === 400 && !data.email) {
         alert(data.message);
-        setSubmitting(false);
 
         history.push('/access/login');
       } else {
         alert('Something went very wrong please try again');
-        setSubmitting(false);
 
         history.push('/access/login');
       }

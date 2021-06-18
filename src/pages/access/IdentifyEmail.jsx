@@ -19,6 +19,11 @@ export default function IdentifyEmail() {
 
       history.push(`/access/recover/initiate/${email}`);
     } catch (error) {
+      setSubmitting(false);
+
+      if (!error.response) {
+        return alert('Something went wrong. Check your internet connection');
+      }
       let status = error.response.status;
       let data = error.response.data;
       if (status === 400 && !data.email) {
@@ -26,8 +31,6 @@ export default function IdentifyEmail() {
       } else {
         alert('Something went very wrong please try later');
       }
-
-      setSubmitting(false);
     }
   };
   return (
