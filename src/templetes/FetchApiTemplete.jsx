@@ -2,7 +2,7 @@ import React from 'react';
 import LoadingComponent from '../component/models/LoadingComponent';
 import ErrorPageContainer from '../component/models/ErrorPageContainer';
 import MainTempletes from './MainTempletes';
-const FetchApiTemplete = ({ loading, children, error, noNav }) => {
+const FetchApiTemplete = ({ loading, children, error, noNav, status }) => {
   if (loading) {
     return noNav ? (
       <LoadingComponent />
@@ -14,10 +14,10 @@ const FetchApiTemplete = ({ loading, children, error, noNav }) => {
   }
   if (error) {
     return noNav ? (
-      <ErrorPageContainer />
+      <ErrorPageContainer status={status} />
     ) : (
       <MainTempletes>
-        <ErrorPageContainer />
+        <ErrorPageContainer status={status} />
       </MainTempletes>
     );
   }
