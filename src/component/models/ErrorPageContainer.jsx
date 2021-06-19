@@ -8,6 +8,9 @@ export default function ErrorPageContainer({ status, message }) {
     case 400:
       statusMessage = 'Bad Server Request';
       break;
+    case 401:
+      statusMessage = 'Permission Denied, Login to get access';
+      break;
     case 404:
       statusMessage = 'Page not Found';
       break;
