@@ -15,7 +15,7 @@ const Corausal = ({ carousel }) => {
             title='subsribe now!'
             backgroundColor='white'
             textColor=' #ef5354'
-            onClickFn={() => history.push('/membership')}
+            onClickFn={() => history.push('/meropustakalaya/membership')}
           />
         </div>
         <div className={style.childContent2}>

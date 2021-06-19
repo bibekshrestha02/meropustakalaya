@@ -7,7 +7,7 @@ export default function Logo({ fontSize, color }) {
     <div
       className={style.logo}
       style={{ fontSize: fontSize, color: color }}
-      onClick={() => history.push('/')}>
+      onClick={() => history.push('/meropustakalaya/')}>
       <span>Mero Pustakalaya</span>
     </div>
   );

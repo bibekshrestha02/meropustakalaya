@@ -31,7 +31,7 @@ export default function BookDetailPage({ navigation }) {
   const navigateBookFile = () => {
     if (!isLogin) {
       push({
-        pathname: '/access/login',
+        pathname: '/meropustakalaya/access/login',
         state: {
           path: location.pathname,
           message: 'Login To Get Access',
@@ -42,7 +42,7 @@ export default function BookDetailPage({ navigation }) {
 
     if (!isSubscribed) {
       push({
-        pathname: '/membership',
+        pathname: '/meropustakalaya/membership',
         state: {
           path: location.pathname,
           message: 'get membership to get access',
@@ -50,7 +50,7 @@ export default function BookDetailPage({ navigation }) {
       });
       return;
     }
-    push(`/book/view/${id}`);
+    push(`/meropustakalaya/book/view/${id}`);
   };
 
   return (

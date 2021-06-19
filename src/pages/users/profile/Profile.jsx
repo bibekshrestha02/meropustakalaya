@@ -25,7 +25,7 @@ export default function UserDetail() {
   const [isForgetPassword, setForgetPassword] = useState(false);
   const role = useSelector((state) => state.auth.role);
   const logoutHandler = () => {
-    history.push('/');
+    history.push('/meropustakalaya/');
     dispatch(logout());
     dispatch(accountPopCard());
   };

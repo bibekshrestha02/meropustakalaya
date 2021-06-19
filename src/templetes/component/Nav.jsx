@@ -88,13 +88,13 @@ export default function MainNav() {
   const dispatch = useDispatch();
 
   const loginHandler = () => {
-    history.push('/access/login');
+    history.push('/meropustakalaya/access/login');
   };
   const membershipHandler = () => {
-    history.push('/membership');
+    history.push('/meropustakalaya/membership');
   };
   const logoutHandler = () => {
-    history.push('/');
+    history.push('/meropustakalaya/');
     dispatch(logout());
     navToogleHanlder();
   };

@@ -33,20 +33,20 @@ export default function VerifyEmail() {
       } else {
         alert('Something went wrong');
       }
-      history.push('/access/login');
+      history.push('/meropustakalaya/access/login');
     }
   };
   const submitHandler = async (values, { setFieldError }) => {
     try {
       await Axios.get(`/auths/email/verifyEmail/${email}/${values.otp}`);
       alert('You are successfully signup. Login to your account');
-      history.push('/access/login');
+      history.push('/meropustakalaya/access/login');
     } catch (error) {
       let { status } = error.response;
       let { data } = error.response;
       if (status === 400 && data.type === 'email') {
         alert(data.message);
-        history.push('/access/login');
+        history.push('/meropustakalaya/access/login');
       } else if (status === 400 && data.type === 'otp') {
         setFieldError('otp', data.message);
       }

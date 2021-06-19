@@ -22,11 +22,11 @@ export default function RecoverPassword() {
       });
       if (res.status === 200 && res.data.status === 'success') {
         alert('Your passwrod has changed Successfully.');
-        history.push('/access/login');
+        history.push('/meropustakalaya/access/login');
       }
     } catch (error) {
       alert('Something went worng try again');
-      history.push('/access/login');
+      history.push('/meropustakalaya/access/login');
     }
   };
   return (

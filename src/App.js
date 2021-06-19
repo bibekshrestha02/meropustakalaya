@@ -62,66 +62,94 @@ export default function App() {
       <Suspense fallback={<LoadingComponent />}>
         <ErrorBoundry>
           <Switch>
-            <Route component={SignupPage} path='/access/signup' />
-            <Route path='/access/login' component={LoginPage} />
-            <Route component={VerifyEmail} path='/access/user/verify/:email' />
+            <Route
+              component={SignupPage}
+              path='/meropustakalaya/access/signup'
+            />
+            <Route path='/meropustakalaya/access/login' component={LoginPage} />
+            <Route
+              component={VerifyEmail}
+              path='/meropustakalaya/access/user/verify/:email'
+            />
             <Route
               component={VerificationEmail}
-              path='/access/user/verification/:email'
+              path='/meropustakalaya/access/user/verification/:email'
             />
-            <Route component={IdentifyEmail} path='/access/recover/identify' />
+            <Route
+              component={IdentifyEmail}
+              path='/meropustakalaya/access/recover/identify'
+            />
             <Route
               component={RecoverPassword}
-              path='/access/recover/password/:email/:otp'
+              path='/meropustakalaya/access/recover/password/:email/:otp'
             />
             <Route
               component={RecoverInitiate}
-              path='/access/recover/initiate/:email'
+              path='/meropustakalaya/access/recover/initiate/:email'
             />
-            <Route component={RecoverCode} path='/access/recover/:email/' />
-            <Route component={HomePage} path='/' exact />
-            <Route component={BookPage} path='/books' />
-            <Route component={BookDetailsPage} exact path='/book/:id' />
-            <Route component={BookViewerPage} path='/book/view/:id' />
+            <Route
+              component={RecoverCode}
+              path='/meropustakalaya/access/recover/:email/'
+            />
+            <Route component={HomePage} path='/meropustakalaya/' exact />
+            <Route component={BookPage} path='/meropustakalaya/books' />
+            <Route
+              component={BookDetailsPage}
+              exact
+              path='/meropustakalaya/book/:id'
+            />
+            <Route
+              component={BookViewerPage}
+              path='/meropustakalaya/book/view/:id'
+            />
 
-            <UserProtectionRoute Component={SavePage} path='/save' />
+            <UserProtectionRoute
+              Component={SavePage}
+              path='/meropustakalaya/save'
+            />
             <UserProtectionRoute
               Component={MembershipPage}
-              path='/membership'
+              path='/meropustakalaya/membership'
             />
-            <UserProtectionRoute path='/profile' Component={ProfilePage} />
+            <UserProtectionRoute
+              path='/meropustakalaya/profile'
+              Component={ProfilePage}
+            />
 
-            <AdminProtectionRoute path='/admin/carousel' Component={Carousel} />
             <AdminProtectionRoute
-              path='/admin/dashboard'
+              path='/meropustakalaya/admin/carousel'
+              Component={Carousel}
+            />
+            <AdminProtectionRoute
+              path='/meropustakalaya/admin/dashboard'
               Component={DashboardPage}
             />
             <AdminProtectionRoute
-              path='/admin/book'
+              path='/meropustakalaya/admin/book'
               Component={BookControlPage}
             />
             <AdminProtectionRoute
-              path='/admin/category'
+              path='/meropustakalaya/admin/category'
               Component={CategoryControllerPage}
             />
             <AdminProtectionRoute
-              path='/admin/users'
+              path='/meropustakalaya/admin/users'
               Component={UserControlPage}
             />
             <AdminProtectionRoute
-              path='/admin/createUser'
+              path='/meropustakalaya/admin/createUser'
               Component={CreateUserPage}
             />
             <AdminProtectionRoute
-              path='/admin/createBook'
+              path='/meropustakalaya/admin/createBook'
               Component={CreateBookPage}
             />
             <AdminProtectionRoute
-              path='/admin/bookReview'
+              path='/meropustakalaya/admin/bookReview'
               Component={BookReviewPage}
             />
             <AdminProtectionRoute
-              path='/admin/package'
+              path='/meropustakalaya/admin/package'
               Component={PackagePage}
             />
             <Route component={NotFoundPage} />

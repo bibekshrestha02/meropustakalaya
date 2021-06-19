@@ -17,7 +17,9 @@ export default function VerificationEmail() {
       setisSubmitting(false);
 
       if (res.status === 201) {
-        return history.push(`/access/user/verify/${res.data.email}`);
+        return history.push(
+          `/meropustakalaya/access/user/verify/${res.data.email}`
+        );
       }
     } catch (error) {
       setisSubmitting(false);
@@ -33,7 +35,7 @@ export default function VerificationEmail() {
       } else {
         alert('Something went wrong');
       }
-      history.push('/access/login');
+      history.push('/meropustakalaya/access/login');
     }
   };
   return (

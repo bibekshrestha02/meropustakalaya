@@ -13,7 +13,7 @@ export default function ProtectedRoute({ Component, ...rest }) {
           <Redirect
             from={location.pathname}
             to={{
-              pathname: '/access/login',
+              pathname: '/meropustakalaya/access/login',
               state: {
                 path: location.pathname,
                 message: 'Login To Get Access',

@@ -36,7 +36,11 @@ export default function MembershipPage() {
       await dispatch(subscribeAction(selectedPackage));
       setSubmitingSubscribe(false);
       alert('Sucessfully subscribed');
-      history.push(history.location.state ? history.location.state.path : '/');
+      history.push(
+        history.location.state
+          ? history.location.state.path
+          : '/meropustakalaya/'
+      );
     } catch (error) {
       alert('Something went wrong. Please try again.');
       setSubmitingSubscribe(false);

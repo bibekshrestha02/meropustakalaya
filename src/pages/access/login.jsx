@@ -16,7 +16,11 @@ export default function Auth() {
     try {
       await dispatch(login(values.email, values.password));
       setSubmitting(false);
-      history.push(history.location.state ? history.location.state.path : '/');
+      history.push(
+        history.location.state
+          ? history.location.state.path
+          : '/meropustakalaya/'
+      );
     } catch (error) {
       setSubmitting(false);
 
@@ -31,7 +35,9 @@ export default function Auth() {
       }
 
       if (status === 400 && data.isVerfied === false) {
-        history.push(`/access/user/verification/${values.email}`);
+        history.push(
+          `/meropustakalaya/access/user/verification/${values.email}`
+        );
       }
       if (status === 500) {
         alert('Something went wrong,Please try again');
@@ -76,7 +82,8 @@ export default function Auth() {
                 <span
                   className={style.link}
                   onClick={() =>
-                    !isSubmitting && history.push('/access/recover/identify')
+                    !isSubmitting &&
+                    history.push('/meropustakalaya/access/recover/identify')
                   }>
                   Forget password?
                 </span>
@@ -88,7 +95,8 @@ export default function Auth() {
                 <span
                   className={style.link}
                   onClick={() => {
-                    !isSubmitting && history.push('/access/signup');
+                    !isSubmitting &&
+                      history.push('/meropustakalaya/access/signup');
                   }}>
                   Create an account
                 </span>

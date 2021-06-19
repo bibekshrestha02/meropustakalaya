@@ -20,7 +20,7 @@ export default function Signup() {
       });
       setSubmitting(false);
 
-      history.push(`/access/user/verify/${values.email}`);
+      history.push(`/meropustakalaya/access/user/verify/${values.email}`);
     } catch (error) {
       setSubmitting(false);
 
@@ -86,7 +86,9 @@ export default function Signup() {
                 <span
                   className={style.link}
                   onClick={() =>
-                    isSubmitting ? null : history.push('/access/login')
+                    isSubmitting
+                      ? null
+                      : history.push('/meropustakalaya/access/login')
                   }>
                   login to your account
                 </span>

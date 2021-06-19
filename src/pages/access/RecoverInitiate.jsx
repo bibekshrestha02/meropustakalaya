@@ -17,7 +17,7 @@ export default function RecoverInitiate() {
     try {
       const res = await Axios.post('/auths/resetPassword/sendOtp', { email });
       if (res.status === 200 && res.data.status === 'sucess') {
-        history.push(`/access/recover/${email}`);
+        history.push(`/meropustakalaya/access/recover/${email}`);
       }
     } catch (error) {
       setSubmitting(false);
@@ -30,11 +30,11 @@ export default function RecoverInitiate() {
       if (status === 400 && !data.email) {
         alert(data.message);
 
-        history.push('/access/login');
+        history.push('/meropustakalaya/access/login');
       } else {
         alert('Something went very wrong please try again');
 
-        history.push('/access/login');
+        history.push('/meropustakalaya/access/login');
       }
     }
   };

@@ -25,7 +25,7 @@ export default function NavSmComponent({
 
   const viewProfileHandler = () => {
     navHanlder();
-    history.push('/profile');
+    history.push('/meropustakalaya/profile');
   };
   const unAuthHeader = (
     <>

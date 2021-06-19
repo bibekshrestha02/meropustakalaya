@@ -10,12 +10,12 @@ export default function AccountPop() {
   const dispatch = useDispatch();
   const history = useHistory();
   const logoutHandler = () => {
-    history.push('/');
+    history.push('/meropustakalaya/');
     dispatch(logout());
     dispatch(accountPopCard());
   };
   const userRouteHandler = () => {
-    history.push('/profile');
+    history.push('/meropustakalaya/profile');
     dispatch(accountPopCard());
   };
   return (

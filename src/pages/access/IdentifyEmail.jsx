@@ -17,7 +17,7 @@ export default function IdentifyEmail() {
       let email = res.data.data.email;
       setSubmitting(false);
 
-      history.push(`/access/recover/initiate/${email}`);
+      history.push(`/meropustakalaya/access/recover/initiate/${email}`);
     } catch (error) {
       setSubmitting(false);
 

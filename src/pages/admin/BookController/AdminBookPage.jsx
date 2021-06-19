@@ -20,11 +20,11 @@ export default function BookControlPage() {
     isComponentMount
   );
   const createBookHanlder = () => {
-    push('/admin/createBook');
+    push('/meropustakalaya/admin/createBook');
   };
   const updateBookHandler = (book) => {
     push({
-      pathname: '/admin/createBook',
+      pathname: '/meropustakalaya/admin/createBook',
       state: {
         book,
       },
@@ -72,7 +72,7 @@ export default function BookControlPage() {
           <td>
             <DeleteButton
               name='View'
-              handler={() => push(`/book/view/${e.file}`)}
+              handler={() => push(`/meropustakalaya/book/view/${e.file}`)}
             />
           </td>
           <td>

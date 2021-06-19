@@ -57,7 +57,7 @@ export default function MembershipComponent() {
           isOutline
           onClickFn={() =>
             push({
-              pathname: '/membership',
+              pathname: '/meropustakalaya/membership',
               state: { path: location.pathname },
             })
           }

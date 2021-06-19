@@ -33,11 +33,11 @@ export default function VerifyEmail() {
       if (status === 400 && !data.email) {
         alert(data.message);
 
-        history.push('/access/login');
+        history.push('/meropustakalaya/access/login');
       } else {
         alert('Something went very wrong please try again');
 
-        history.push('/access/login');
+        history.push('/meropustakalaya/access/login');
       }
     }
   };
@@ -50,14 +50,16 @@ export default function VerifyEmail() {
       setSubmitting(false);
       if (res.status === 200 && res.data.status === 'success') {
         setSubmitting(false);
-        history.push(`/access/recover/password/${email}/${values.otp}`);
+        history.push(
+          `/meropustakalaya/access/recover/password/${email}/${values.otp}`
+        );
       }
     } catch (error) {
       let { status } = error.response;
       let { data } = error.response;
       if (status === 400 && data.email === 'invalid') {
         alert('Invalid Email, Try again');
-        history.push('/access/login');
+        history.push('/meropustakalaya/access/login');
       } else if (status === 400 && data.otp === 'invalid') {
         setFieldError('otp', data.message);
       } else if (status === 400 && data.time === 'expired') {
@@ -66,7 +68,7 @@ export default function VerifyEmail() {
         alert('Something went very wrong please try again');
         setSubmitting(false);
 
-        history.push('/access/login');
+        history.push('/meropustakalaya/access/login');
       }
     }
   };
