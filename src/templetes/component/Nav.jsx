@@ -16,38 +16,38 @@ export default function MainNav() {
     {
       id: 1,
       name: 'home',
-      link: '/',
+      link: '/meropustakalaya/',
     },
     {
       id: 2,
       name: 'books',
-      link: '/books',
+      link: '/meropustakalaya/books',
     },
     {
       id: 3,
       name: 'save',
-      link: '/save',
+      link: '/meropustakalaya/save',
     },
   ];
   const adminLink = [
     {
       name: 'dashboard',
-      link: '/admin/dashboard',
+      link: '/meropustakalaya/admin/dashboard',
     },
     {
       name: 'books',
       child: [
         {
           name: 'books',
-          link: '/admin/book',
+          link: '/meropustakalaya/admin/book',
         },
         {
           name: 'Category',
-          link: '/admin/category',
+          link: '/meropustakalaya/admin/category',
         },
         {
           name: 'Review',
-          link: '/admin/bookReview',
+          link: '/meropustakalaya/admin/bookReview',
         },
       ],
     },
@@ -56,12 +56,12 @@ export default function MainNav() {
       child: [
         {
           name: 'users',
-          link: '/admin/users',
+          link: '/meropustakalaya/admin/users',
         },
 
         {
           name: 'Create clients',
-          link: '/admin/createUser',
+          link: '/meropustakalaya/admin/createUser',
         },
       ],
     },
@@ -70,11 +70,11 @@ export default function MainNav() {
       child: [
         {
           name: 'Carousel',
-          link: '/admin/carousel',
+          link: '/meropustakalaya/admin/carousel',
         },
         {
           name: 'packages',
-          link: '/admin/package',
+          link: '/meropustakalaya/admin/package',
         },
       ],
     },
