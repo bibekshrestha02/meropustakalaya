@@ -24,7 +24,7 @@ const Corausal = ({ carousel }) => {
             <div>{carousel.price}</div>
           </div>
           <div className={style.imageContainer}>
-            <img src='././photo/work.png' alt='works' />
+            <img src='/photo/work.png' alt='works' />
           </div>
         </div>
       </div>
