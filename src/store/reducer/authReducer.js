@@ -8,19 +8,6 @@ const initalState = {
   isLogin: '',
   subscriptionDetail: {},
   savedBooks: [],
-  isSubscribe: function () {
-    const start_at =
-      this.subscriptionDetail && this.subscriptionDetail.start_at;
-    const expires_at =
-      this.subscriptionDetail && this.subscriptionDetail.expires_at;
-    if (!start_at) {
-      return false;
-    } else if (new Date(expires_at) > Date.now()) {
-      return true;
-    } else {
-      return false;
-    }
-  },
 };
 
 const AuthStore = (state = initalState, action) => {
