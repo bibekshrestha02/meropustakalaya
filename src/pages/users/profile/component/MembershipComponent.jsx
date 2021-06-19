@@ -6,8 +6,7 @@ import TitleValueComponent from '../../../../component/adminComponent/TitleValue
 import { useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import { getDay } from '../../../../utils/helperFn';
-export default function MembershipComponent({ user }) {
-  const isSubscribe = useSelector((state) => state.auth.isSubscribe());
+export default function MembershipComponent() {
   const subscriptionDetail = useSelector(
     (state) => state.auth.subscriptionDetail
   );
@@ -20,7 +19,7 @@ export default function MembershipComponent({ user }) {
           <TitleValueComponent
             title='Start At'
             value={
-              isSubscribe
+              subscriptionDetail
                 ? new Date(subscriptionDetail.start_at).toDateString()
                 : '-'
             }
@@ -28,7 +27,7 @@ export default function MembershipComponent({ user }) {
           <TitleValueComponent
             title='Update At'
             value={
-              isSubscribe
+              subscriptionDetail
                 ? subscriptionDetail.update_at
                   ? new Date(subscriptionDetail.update_at).toDateString()
                   : '-'
@@ -38,7 +37,7 @@ export default function MembershipComponent({ user }) {
           <TitleValueComponent
             title='Expires At'
             value={
-              isSubscribe
+              subscriptionDetail
                 ? new Date(subscriptionDetail.expires_at).toDateString()
                 : '-'
             }
@@ -46,14 +45,14 @@ export default function MembershipComponent({ user }) {
           <TitleValueComponent
             title='Remaining Day'
             value={
-              isSubscribe
+              subscriptionDetail
                 ? `${getDay(Date.now(), subscriptionDetail.expires_at)} days`
                 : '-'
             }
           />
         </div>
         <Button
-          title={isSubscribe ? 'Renew Subscribtion' : 'subscribe'}
+          title={subscriptionDetail ? 'Renew Subscribtion' : 'subscribe'}
           fontSize='10px'
           isOutline
           onClickFn={() =>
