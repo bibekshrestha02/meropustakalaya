@@ -23,7 +23,9 @@ export default function BookCard({
   };
   return (
     <div className={small ? style.bookContainer_sm : style.bookContainer}>
-      <Link to={`/book/${id}`} style={{ textDecoration: 'none' }}>
+      <Link
+        to={`/meropustakalaya/book/${id}`}
+        style={{ textDecoration: 'none' }}>
         <div className={style.imageContainer}>
           <ImageLoadingComponent isImageLoaded={isImageLoaded} />
           <img
@@ -37,7 +39,9 @@ export default function BookCard({
         </div>
       </Link>
       <div className={style.detailsContainer}>
-        <Link to={`/book/${id}`} style={{ textDecoration: 'none' }}>
+        <Link
+          to={`/meropustakalaya/book/${id}`}
+          style={{ textDecoration: 'none' }}>
           <span className={style.title}>{title}</span>
           <span className={style.auther}>{auther}</span>
         </Link>
