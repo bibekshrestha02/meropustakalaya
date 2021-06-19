@@ -5,6 +5,7 @@ import UserProtectionRoute from './route/UserProtectionRoute';
 import AdminProtectionRoute from './route/AdminProtectionRoute';
 import { autoLogin } from './store/action/authAction';
 import { useDispatch } from 'react-redux';
+import ErrorBoundry from './customHooks/ErrorBoundry';
 const HomePage = lazy(() => import('./pages/users/home/HomePage'));
 const BookPage = lazy(() => import('./pages/users/book/Books'));
 const SavePage = lazy(() => import('./pages/users/SavePage'));
@@ -59,65 +60,73 @@ export default function App() {
   return (
     <Router>
       <Suspense fallback={<LoadingComponent />}>
-        <Switch>
-          <Route component={SignupPage} path='/access/signup' />
-          <Route path='/access/login' component={LoginPage} />
-          <Route component={VerifyEmail} path='/access/user/verify/:email' />
-          <Route
-            component={VerificationEmail}
-            path='/access/user/verification/:email'
-          />
-          <Route component={IdentifyEmail} path='/access/recover/identify' />
-          <Route
-            component={RecoverPassword}
-            path='/access/recover/password/:email/:otp'
-          />
-          <Route
-            component={RecoverInitiate}
-            path='/access/recover/initiate/:email'
-          />
-          <Route component={RecoverCode} path='/access/recover/:email/' />
-          <Route component={HomePage} path='/' exact />
-          <Route component={BookPage} path='/books' />
-          <Route component={BookDetailsPage} exact path='/book/:id' />
-          <Route component={BookViewerPage} path='/book/view/:id' />
+        <ErrorBoundry>
+          <Switch>
+            <Route component={SignupPage} path='/access/signup' />
+            <Route path='/access/login' component={LoginPage} />
+            <Route component={VerifyEmail} path='/access/user/verify/:email' />
+            <Route
+              component={VerificationEmail}
+              path='/access/user/verification/:email'
+            />
+            <Route component={IdentifyEmail} path='/access/recover/identify' />
+            <Route
+              component={RecoverPassword}
+              path='/access/recover/password/:email/:otp'
+            />
+            <Route
+              component={RecoverInitiate}
+              path='/access/recover/initiate/:email'
+            />
+            <Route component={RecoverCode} path='/access/recover/:email/' />
+            <Route component={HomePage} path='/' exact />
+            <Route component={BookPage} path='/books' />
+            <Route component={BookDetailsPage} exact path='/book/:id' />
+            <Route component={BookViewerPage} path='/book/view/:id' />
 
-          <UserProtectionRoute Component={SavePage} path='/save' />
-          <UserProtectionRoute Component={MembershipPage} path='/membership' />
-          <UserProtectionRoute path='/profile' Component={ProfilePage} />
+            <UserProtectionRoute Component={SavePage} path='/save' />
+            <UserProtectionRoute
+              Component={MembershipPage}
+              path='/membership'
+            />
+            <UserProtectionRoute path='/profile' Component={ProfilePage} />
 
-          <AdminProtectionRoute path='/admin/carousel' Component={Carousel} />
-          <AdminProtectionRoute
-            path='/admin/dashboard'
-            Component={DashboardPage}
-          />
-          <AdminProtectionRoute
-            path='/admin/book'
-            Component={BookControlPage}
-          />
-          <AdminProtectionRoute
-            path='/admin/category'
-            Component={CategoryControllerPage}
-          />
-          <AdminProtectionRoute
-            path='/admin/users'
-            Component={UserControlPage}
-          />
-          <AdminProtectionRoute
-            path='/admin/createUser'
-            Component={CreateUserPage}
-          />
-          <AdminProtectionRoute
-            path='/admin/createBook'
-            Component={CreateBookPage}
-          />
-          <AdminProtectionRoute
-            path='/admin/bookReview'
-            Component={BookReviewPage}
-          />
-          <AdminProtectionRoute path='/admin/package' Component={PackagePage} />
-          <Route component={NotFoundPage} />
-        </Switch>
+            <AdminProtectionRoute path='/admin/carousel' Component={Carousel} />
+            <AdminProtectionRoute
+              path='/admin/dashboard'
+              Component={DashboardPage}
+            />
+            <AdminProtectionRoute
+              path='/admin/book'
+              Component={BookControlPage}
+            />
+            <AdminProtectionRoute
+              path='/admin/category'
+              Component={CategoryControllerPage}
+            />
+            <AdminProtectionRoute
+              path='/admin/users'
+              Component={UserControlPage}
+            />
+            <AdminProtectionRoute
+              path='/admin/createUser'
+              Component={CreateUserPage}
+            />
+            <AdminProtectionRoute
+              path='/admin/createBook'
+              Component={CreateBookPage}
+            />
+            <AdminProtectionRoute
+              path='/admin/bookReview'
+              Component={BookReviewPage}
+            />
+            <AdminProtectionRoute
+              path='/admin/package'
+              Component={PackagePage}
+            />
+            <Route component={NotFoundPage} />
+          </Switch>
+        </ErrorBoundry>
       </Suspense>
     </Router>
   );
