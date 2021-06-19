@@ -8,10 +8,17 @@ import Axios from '../../../utils/Axios';
 import { useHistory } from 'react-router-dom';
 import { useFetchApi } from '../../../customHooks/useFetchApi';
 import FetchApiTemplete from '../../../templetes/FetchApiTemplete';
-export default function BookDetailPage() {
+import { useSelector } from 'react-redux';
+export default function BookDetailPage({ navigation }) {
   const { id } = useParams();
-  const { push } = useHistory();
-
+  const { push, location } = useHistory();
+  const isLogin = useSelector((state) => state.auth.isLogin);
+  const subscriptionDetail = useSelector(
+    (state) => state.auth.subscriptionDetail
+  );
+  const isSubscribed = !subscriptionDetail
+    ? false
+    : Date.now() <= new Date(subscriptionDetail.expires_at);
   const getBookDetails = () => {
     return Axios.get(`/books/${id}`);
   };
@@ -20,7 +27,29 @@ export default function BookDetailPage() {
     [getBookDetails()],
     isComponentMounted
   );
+
   const navigateBookFile = () => {
+    if (!isLogin) {
+      push({
+        pathname: '/access/login',
+        state: {
+          path: location.pathname,
+          message: 'Login To Get Access',
+        },
+      });
+      return;
+    }
+
+    if (!isSubscribed) {
+      push({
+        pathname: '/membership',
+        state: {
+          path: location.pathname,
+          message: 'get membership to get access',
+        },
+      });
+      return;
+    }
     push(`/book/view/${id}`);
   };
 
