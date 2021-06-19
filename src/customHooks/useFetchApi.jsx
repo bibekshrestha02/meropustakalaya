@@ -4,7 +4,7 @@ export const useFetchApi = (url, ref) => {
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  const [status, setStatus] = useState('');
   useEffect(() => {
     if (ref.current) {
       (async () => {
@@ -20,6 +20,13 @@ export const useFetchApi = (url, ref) => {
             })
           )
           .catch((error) => {
+            if (!error.response) {
+              setStatus(500);
+              setError(true);
+              setLoading(false);
+              return;
+            }
+            setStatus(error.response.status);
             setError(true);
             setLoading(false);
           });
@@ -31,5 +38,5 @@ export const useFetchApi = (url, ref) => {
     };
   }, [url, ref]);
 
-  return { data, loading, error, setData, setError, setLoading };
+  return { data, loading, error, setData, setError, setLoading, status };
 };
