@@ -1,14 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 import style from './style.module.scss';
-
 import { useHistory } from 'react-router-dom';
-
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../store/action/authAction';
-import NavSmComponent from './NavComponent/NavSmComponent';
-import LinkContainer from './NavComponent/LinkContainer';
-import LHContainer from './NavComponent/LHContainer';
-import RHContainer from './NavComponent/RHContainer';
+const NavSmComponent = lazy(() => import('./NavComponent/NavSmComponent'));
+const LinkContainer = lazy(() => import('./NavComponent/LinkContainer'));
+const LHContainer = lazy(() => import('./NavComponent/LHContainer'));
+const RHContainer = lazy(() => import('./NavComponent/RHContainer'));
 export default function MainNav() {
   const history = useHistory();
   const [isNavToogle, setNavToogle] = useState(false);
@@ -106,24 +104,26 @@ export default function MainNav() {
 
   return (
     <div className={style.navContainer}>
-      <LHContainer navHanlder={navToogleHanlder} />
-      <div className={style.secondChild}>
-        <LinkContainer navLink={navLink} />
-        <RHContainer
+      <Suspense>
+        <LHContainer navHanlder={navToogleHanlder} />
+        <div className={style.secondChild}>
+          <LinkContainer navLink={navLink} />
+          <RHContainer
+            loginHandler={loginHandler}
+            membershipHandler={membershipHandler}
+          />
+        </div>
+
+        <NavSmComponent
+          navLink={navLink}
+          isNav={isNavToogle}
           loginHandler={loginHandler}
+          logoutHandler={logoutHandler}
+          navHanlder={navToogleHanlder}
+          role={role}
           membershipHandler={membershipHandler}
         />
-      </div>
-
-      <NavSmComponent
-        navLink={navLink}
-        isNav={isNavToogle}
-        loginHandler={loginHandler}
-        logoutHandler={logoutHandler}
-        navHanlder={navToogleHanlder}
-        role={role}
-        membershipHandler={membershipHandler}
-      />
+      </Suspense>
     </div>
   );
 }
