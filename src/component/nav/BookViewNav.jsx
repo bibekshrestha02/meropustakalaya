@@ -5,8 +5,6 @@ export default function BookViewNav({ pageNo }) {
   return (
     <div className={style.bookViewNavContainer}>
       <Logo fontSize='30px' color='#ef5354' />
-      <span>Page {pageNo}</span>
-      <div></div>
     </div>
   );
 }

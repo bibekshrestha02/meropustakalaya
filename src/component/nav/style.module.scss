@@ -2,9 +2,8 @@
 @import '../../sass/_mixin';
 
 .bookViewNavContainer {
-  @include boxShadow();
-  @include flex(row, center, space-between);
-  padding: 15px;
+  @include flex(row, center, center);
+  height: 60px;
 }
 .dropDownContainer {
   float: left;
