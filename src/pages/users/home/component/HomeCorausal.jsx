@@ -23,9 +23,9 @@ const Corausal = ({ carousel }) => {
             <div>{carousel.priceLabel}</div>
             <div>{carousel.price}</div>
           </div>
-          <div className={style.imageContainer}>
-            <img src='/photo/work.png' alt='works' />
-          </div>
+          {/* <div className={style.imageContainer}>
+            <img src='./photo/work.png' alt='works' />
+          </div> */}
         </div>
       </div>
       <div className={style.svgwraper}>
